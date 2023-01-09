@@ -1,0 +1,30 @@
+import React from 'react';
+import { useDrop } from 'react-dnd';
+
+const DropBox = () => {
+  const input = useRef();
+  const [{ isOver }, drop] = useDrop({
+    accept: 'box',
+    drop: () => ({ name: 'DropBox' }),
+    collect: monitor => ({
+      isOver: monitor.isOver(),
+    }),
+  });
+  useEffect(() => {
+    input.current.addEventListener('change', () => {
+      const files = input.current.files;
+      // Only upload image files
+      const imageFiles = [...files].filter(file => file.type.match(/image\/*/));
+      input.current.files = imageFiles;
+    });
+    // You can also add a submit event listener to the form element here
+  }, []);
+  return (
+    <div ref={drop}>
+      <input ref={input} type="file" multiple />
+      {isOver ? 'Release to drop' : 'Drag files here'}
+    </div>
+  );
+};
+
+export default DropBox;
