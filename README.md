@@ -57,3 +57,5 @@ const DropBox = () => {
 export default DropBox;
 
 ```
+
+This will allow the user to select files using the drag and drop component, and only image files will be uploaded when the form is submitted. You can customize the code to fit your specific needs, such as changing the URL of the server-side file upload handler and customizing the code that is executed when the form is submitted to send the selected files to the server using an HTTP request.
